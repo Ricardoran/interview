@@ -1,18 +1,16 @@
-<<<<<<< HEAD
+
 npm install -g gitbook-cli
 
 gitbook init
 
-=======
->>>>>>> gh-pages
 # install the plugins and build the static site
 gitbook install && gitbook build
 
 # checkout to the gh-pages branch
-git checkout gh-pages
+git checkout publish
 
 # pull the latest updates
-git pull origin gh-pages --rebase
+git pull origin publish --rebase
 
 # copy the static site files into the current directory.
 cp -R _book/* .
@@ -28,7 +26,7 @@ git add .
 git commit -a -m "Update docs"
 
 # push to the origin
-git push origin gh-pages
+git push origin publish
 
 # checkout to the master branch
 git checkout master
