@@ -3,7 +3,7 @@
 * [Introduction](README.md)
 
 -----
-* [ch1](ch1.md)
+* [Self Introduction](self_introduction.md)
 * [ch2](ch2.md)
 * [ch3](ch3.md)
 * [ch4](ch4.md)
