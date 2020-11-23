@@ -1,1 +1,1 @@
-# This is a note for interview.
+# for interview
