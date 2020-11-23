@@ -19,9 +19,9 @@
 有时候过于注重细节，可能会忽视在全局上的掌握，尤其是在深入一门技术的时候
 
 
-![title](img/haoran.jpg)
+<!-- ![title](img/haoran.jpg)
 
 <p align="center" width="100%">
     <img width="50%" src="img/haoran.jpg" > 
-</p>
+</p> -->
 
