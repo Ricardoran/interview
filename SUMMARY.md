@@ -8,4 +8,5 @@
 * [ch3](ch3.md)
 * [ch4](ch4.md)
 * [ch5](ch5.md)
+* [ch6](ch6.md)
 
