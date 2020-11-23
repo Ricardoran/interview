@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 npm install -g gitbook-cli
 
 gitbook init
 
+=======
+>>>>>>> gh-pages
 # install the plugins and build the static site
 gitbook install && gitbook build
 
