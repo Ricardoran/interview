@@ -1,6 +1,1 @@
-# Introduction
-
-## this is a note book
-
-
-## add ch6
+# This is a book for interview preparation
