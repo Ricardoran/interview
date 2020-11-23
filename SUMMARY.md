@@ -3,11 +3,11 @@
 * [Introduction](README.md)
 
 -----
-* [Self Introduction](content/self_introduction.md)
-* [Project Introduction](content/project_introduction.md)
-* [Web Technology](content/web.md)
-* [Computer Network](content/network.md)
-* [Operating System](content/os.md)
-* [Database](content/database.md)
-* [Algorithm](content/algorithm.md)
+* [Self Introduction](self_introduction.md)
+* [Project Introduction](project_introduction.md)
+* [Web Technology](web.md)
+* [Computer Network](network.md)
+* [Operating System](os.md)
+* [Database](database.md)
+* [Algorithm](algorithm.md)
 
