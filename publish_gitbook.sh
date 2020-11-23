@@ -29,4 +29,4 @@ git commit -a -m "Update docs"
 git push origin publish
 
 # checkout to the master branch
-git checkout master
+# git checkout master
