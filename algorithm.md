@@ -1,7 +1,3 @@
-# Introduction
-
-# Chapter1
-
 # BST
 
 ```python

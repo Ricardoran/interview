@@ -1,3 +1,4 @@
 # Summary
 
-* [Introduction](ch1.md)
+* [Introduction](intro.md)
+* [Algorithm](algorithm.md)
