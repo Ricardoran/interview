@@ -56,7 +56,7 @@ JavaScript是单线程运行的： JavaScript异步编程的几种常见模式
 ## Get/Post
 GET和POST携带数据的格式也有区别。当浏览器发出一个GET请求时，就意味着要么是用户自己在浏览器的地址栏输入，要不就是点击了html里a标签的href中的url。所以其实并不是GET只能用url，而是浏览器直接发出的GET只能由一个url触发。所以没办法，GET上要在url之外带一些参数就只能依靠url上附带querystring。但是HTTP协议本身并没有这个限制。
 浏览器的POST请求都来自表单提交。每次提交，表单的数据被浏览器用编码到HTTP请求的body里。浏览器发出的POST请求的body主要有有两种格式，一种是application/x-www-form-urlencoded用来传输简单的数据，大概就是"key1=value1&key2=value2"这样的格式。另外一种是传文件，会采用multipart/form-data格式。采用后者是因为application/x-www-form-urlencoded的编码方式对于文件这种二进制的数据非常低效。
-浏览器在POST一个表单时，url上也可以带参数，只要{<form action="url" >}里的url带querystring就行。只不过表单里面的那些用\*<input>\*等标签经过用户操作产生的数据都在会在body里。
+浏览器在POST一个表单时，url上也可以带参数，只要 form action="url" 里的url带querystring就行。只不过表单里面的那些用 input 等标签经过用户操作产生的数据都在会在body里。
 因此我们一般会泛泛的说“GET请求没有body，只有url，请求数据放在url的querystring中；POST请求的数据在body中“。但这种情况仅限于浏览器发请求的场景。
  
 我们常听到GET不如POST安全，因为POST用body传输数据，而GET用url传输，更加容易看到。但是从攻击的角度，无论是GET还是POST都不够安全，因为HTTP本身是明文协议。每个HTTP请求和返回的每个byte都会在网络上明文传播，不管是url，header还是body。这完全不是一个“是否容易在浏览器地址栏上看到“的问题。
