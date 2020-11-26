@@ -257,6 +257,195 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="python">Python</h1>
+<p><a href="https://github.com/taizilongxu/interview_python" target="_blank">https://github.com/taizilongxu/interview_python</a></p>
+<h2 id="python-&#x521D;&#x59CB;&#x5316;">Python &#x521D;&#x59CB;&#x5316;</h2>
+<p>constructor &#x53EF;&#x4EE5;&#x7528; &quot;<strong>new</strong>&quot;</p>
+<h2 id="python-&#x5C01;&#x88C5;">Python &#x5C01;&#x88C5;</h2>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SecretString</span>:</span>
+       <span class="hljs-string">&apos;&apos;&apos;A not-at-all secure way to store a secret string.&apos;&apos;&apos;</span>
+       <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, plain_string, pass_phrase)</span>:</span>
+           self.__plain_string = plain_string
+           self.__pass_phrase = pass_phrase
+       <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decrypt</span><span class="hljs-params">(self, pass_phrase)</span>:</span>
+           <span class="hljs-string">&apos;&apos;&apos;Only show the string if the pass_phrase is correct.&apos;&apos;&apos;</span>
+           <span class="hljs-keyword">if</span> pass_phrase == self.__pass_phrase:
+               <span class="hljs-keyword">return</span> self.__plain_string
+           <span class="hljs-keyword">else</span>:
+ <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;&apos;</span>
+
+<span class="hljs-comment"># &#x5F53;&#x6211;&#x4EEC;&#x7ED9;&#x53D8;&#x91CF;&#x52A0; __&#x524D;&#x7F00;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8BF4;&#x660E;&#x662F;&#x79C1;&#x6709;&#x7684;&#xFF0C;&#x4E0D;&#x53EF;&#x8BBF;&#x95EE;&#xFF0C;&#x9664;&#x975E;&#x7B26;&#x5408;&#x8981;&#x6C42;</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>secret_string = SecretString(<span class="hljs-string">&quot;ACME: Top Secret&quot;</span>, <span class="hljs-string">&quot;antwerp&quot;</span>)
+<span class="hljs-meta">&gt;&gt;&gt; </span>print(secret_string.decrypt(<span class="hljs-string">&quot;antwerp&quot;</span>))
+ACME: Top Secret
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>print(secret_string.__plain_text)
+Traceback (most recent call last):
+  File <span class="hljs-string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="hljs-number">1</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
+AttributeError: <span class="hljs-string">&apos;SecretString&apos;</span> object has no attribute
+<span class="hljs-string">&apos;__plain_text&apos;</span>
+
+
+<span class="hljs-comment"># &#x4F46;&#x53EF;&#x4EE5;&#x8F7B;&#x677E;&#x7834;&#x89E3;&#xFF0C;&#x56E0;&#x4E3A; _&lt;classname&gt;&#x4EE3;&#x8868;&#x5185;&#x90E8;&#x7684;&#x8BBF;&#x95EE;&#xFF0C;&#x5916;&#x90E8;&#x8BBF;&#x95EE;&#x4F1A;&#x88AB;&#x963B;&#x6B62;</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>print(secret_string._SecretString__plain_string)
+ACME: Top Secret
+</code></pre>
+<h2 id="python-&#x7EE7;&#x627F;">Python &#x7EE7;&#x627F;</h2>
+<p>&#x2022; Basic inheritance
+&#x2022; Inheriting from built-ins &#x53EF;&#x4EE5;&#x4ECE;Python&#x672C;&#x8EAB;&#x7684;&#x7C7B;&#x53BB;&#x7EE7;&#x627F;&#xFF0C;&#x6BD4;list
+&#x2022; Multiple inheritance
+&#x2022; Polymorphism and duck typing</p>
+<h3 id="overriding-and-super">Overriding and super</h3>
+<p>&#x4EFB;&#x4F55;&#x65B9;&#x6CD5;&#x90FD;&#x53EF;&#x4EE5;&#x88AB;&#x91CD;&#x5199;&#xFF0C;&#x4E14;&#x9ED8;&#x8BA4;&#x4F1A;&#x88AB;&#x91CD;&#x5199;&#xFF0C;&#x56E0;&#x6B64;&#x91CD;&#x70B9;&#x662F;&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x4E00;&#x4E9B;super class&#x65B9;&#x6CD5;&#x4E0D;&#x88AB;&#x91CD;&#x5199;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># override</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Friend</span><span class="hljs-params">(Contact)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name, email, phone)</span>:</span>
+        self.name = name
+        self.email = email
+        self.phone = phone
+
+<span class="hljs-comment"># not override</span>
+<span class="hljs-comment"># it returns the object as an instance of the parent class, allowing us to call the parent method directly:</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Friend</span><span class="hljs-params">(Contact)</span>:</span>
+       <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name, email, phone)</span>:</span>
+           super().__init__(name, email)
+           self.phone = phone
+</code></pre>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">&apos;Animal is running...&apos;</span>)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span><span class="hljs-params">(Animal)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span><span class="hljs-params">(Animal)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+dog = Dog()
+dog.run()
+
+cat = Cat()
+cat.run()
+<span class="hljs-comment"># &#x7EE7;&#x627F;&#x6709;&#x4EC0;&#x4E48;&#x597D;&#x5904;&#xFF1F;&#x6700;&#x5927;&#x7684;&#x597D;&#x5904;&#x662F;&#x5B50;&#x7C7B;&#x83B7;&#x5F97;&#x4E86;&#x7236;&#x7C7B;&#x7684;&#x5168;&#x90E8;&#x529F;&#x80FD;&#x3002;&#x7531;&#x4E8E;Animial&#x5B9E;&#x73B0;&#x4E86;run()&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;Dog&#x548C;Cat&#x4F5C;&#x4E3A;&#x5B83;&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x4EC0;&#x4E48;&#x4E8B;&#x4E5F;&#x6CA1;&#x5E72;&#xFF0C;&#x5C31;&#x81EA;&#x52A8;&#x62E5;&#x6709;&#x4E86;run()&#x65B9;&#x6CD5;</span>
+</code></pre>
+<h1 id="&#x591A;&#x7EE7;&#x627F;">&#x591A;&#x7EE7;&#x627F;</h1>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-comment"># &#x5927;&#x7C7B;:</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mammal</span><span class="hljs-params">(Animal)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bird</span><span class="hljs-params">(Animal)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-comment"># &#x5404;&#x79CD;&#x52A8;&#x7269;:</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span><span class="hljs-params">(Mammal)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bat</span><span class="hljs-params">(Mammal)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parrot</span><span class="hljs-params">(Bird)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ostrich</span><span class="hljs-params">(Bird)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-comment"># &#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x7ED9;&#x52A8;&#x7269;&#x518D;&#x52A0;&#x4E0A;Runnable&#x548C;Flyable&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5148;&#x5B9A;&#x4E49;&#x597D;Runnable&#x548C;Flyable&#x7684;&#x7C7B;&#xFF1A;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Runnable</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">&apos;Running...&apos;</span>)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Flyable</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fly</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">&apos;Flying...&apos;</span>)
+
+&#x5BF9;&#x4E8E;&#x9700;&#x8981;Runnable&#x529F;&#x80FD;&#x7684;&#x52A8;&#x7269;&#xFF0C;&#x5C31;&#x591A;&#x7EE7;&#x627F;&#x4E00;&#x4E2A;Runnable&#xFF0C;&#x4F8B;&#x5982;Dog&#xFF1A;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span><span class="hljs-params">(Mammal, Runnable)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bat</span><span class="hljs-params">(Mammal, Flyable)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+</code></pre>
+<h2 id="python-&#x591A;&#x6001;">Python &#x591A;&#x6001;</h2>
+<p>different behaviors happen depending on which subclass is being used, without having to explicitly know what the subclass actually is</p>
+<p><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017497232674368" target="_blank">https://www.liaoxuefeng.com/wiki/1016959663602400/1017497232674368</a>
+&#x591A;&#x6001;&#x7684;&#x597D;&#x5904;&#x5C31;&#x662F;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4F20;&#x5165;Dog&#x3001;Cat&#x3001;Tortoise&#x2026;&#x2026;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x63A5;&#x6536;Animal&#x7C7B;&#x578B;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;Dog&#x3001;Cat&#x3001;Tortoise&#x2026;&#x2026;&#x90FD;&#x662F;Animal&#x7C7B;&#x578B;&#xFF0C;&#x7136;&#x540E;&#xFF0C;&#x6309;&#x7167;Animal&#x7C7B;&#x578B;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x5373;&#x53EF;&#x3002;&#x7531;&#x4E8E;Animal&#x7C7B;&#x578B;&#x6709;run()&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x4F20;&#x5165;&#x7684;&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#xFF0C;&#x53EA;&#x8981;&#x662F;Animal&#x7C7B;&#x6216;&#x8005;&#x5B50;&#x7C7B;&#xFF0C;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x8C03;&#x7528;&#x5B9E;&#x9645;&#x7C7B;&#x578B;&#x7684;run()&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x591A;&#x6001;&#x7684;&#x610F;&#x601D;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">&apos;Animal is running...&apos;</span>)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span><span class="hljs-params">(Animal)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">&apos;Dog is running...&apos;</span>)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span><span class="hljs-params">(Animal)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">&apos;Cat is running...&apos;</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run_twice</span><span class="hljs-params">(animal)</span>:</span>
+    animal.run()
+    animal.run()
+
+a = Animal()
+d = Dog()
+c = Cat()
+
+print(<span class="hljs-string">&apos;a is Animal?&apos;</span>, isinstance(a, Animal))
+print(<span class="hljs-string">&apos;a is Dog?&apos;</span>, isinstance(a, Dog))
+print(<span class="hljs-string">&apos;a is Cat?&apos;</span>, isinstance(a, Cat))
+
+print(<span class="hljs-string">&apos;d is Animal?&apos;</span>, isinstance(d, Animal))
+print(<span class="hljs-string">&apos;d is Dog?&apos;</span>, isinstance(d, Dog))
+print(<span class="hljs-string">&apos;d is Cat?&apos;</span>, isinstance(d, Cat))
+run_twice(c)
+</code></pre>
+<h2 id="python-exception">python exception</h2>
+<pre><code class="lang-python"><span class="hljs-comment"># When an exception is raised, it appears to stop program execution immediately.</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EvenOnly</span><span class="hljs-params">(list)</span>:</span>
+       <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">append</span><span class="hljs-params">(self, integer)</span>:</span>
+           <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> isinstance(integer, int):
+               <span class="hljs-keyword">raise</span> TypeError(<span class="hljs-string">&quot;Only integers can be added&quot;</span>)
+           <span class="hljs-keyword">if</span> integer % <span class="hljs-number">2</span>:
+               <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;Only even numbers can be added&quot;</span>)
+           super().append(integer)
+
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>e = EvenOnly()
+<span class="hljs-meta">&gt;&gt;&gt; </span>e.append(<span class="hljs-string">&quot;a string&quot;</span>)
+Traceback (most recent call last):
+  File <span class="hljs-string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="hljs-number">1</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
+  File <span class="hljs-string">&quot;even_integers.py&quot;</span>, line <span class="hljs-number">7</span>, <span class="hljs-keyword">in</span> add
+    <span class="hljs-keyword">raise</span> TypeError(<span class="hljs-string">&quot;Only integers can be added&quot;</span>)
+TypeError: Only integers can be added
+<span class="hljs-meta">&gt;&gt;&gt; </span>e.append(<span class="hljs-number">3</span>)
+Traceback (most recent call last):
+  File <span class="hljs-string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="hljs-number">1</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
+  File <span class="hljs-string">&quot;even_integers.py&quot;</span>, line <span class="hljs-number">9</span>, <span class="hljs-keyword">in</span> add
+    <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;Only even numbers can be added&quot;</span>)
+ValueError: Only even numbers can be added
+<span class="hljs-meta">&gt;&gt;&gt; </span>e.append(<span class="hljs-number">2</span>)
+</code></pre>
+<pre><code class="lang-python"> <span class="hljs-keyword">import</span> random
+   some_exceptions = [ValueError, TypeError, IndexError, <span class="hljs-keyword">None</span>]
+   <span class="hljs-keyword">try</span>:
+       choice = random.choice(some_exceptions)
+       print(<span class="hljs-string">&quot;raising {}&quot;</span>.format(choice))
+       <span class="hljs-keyword">if</span> choice:
+           <span class="hljs-keyword">raise</span> choice(<span class="hljs-string">&quot;An error&quot;</span>)
+   <span class="hljs-keyword">except</span> ValueError:
+       print(<span class="hljs-string">&quot;Caught a ValueError&quot;</span>)
+   <span class="hljs-keyword">except</span> TypeError:
+       print(<span class="hljs-string">&quot;Caught a TypeError&quot;</span>)
+   <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+       print(<span class="hljs-string">&quot;Caught some other error: %s&quot;</span> %
+           ( e.__class__.__name__))
+<span class="hljs-keyword">else</span>:
+       print(<span class="hljs-string">&quot;This code called if there is no exception&quot;</span>)
+<span class="hljs-keyword">finally</span>:
+       print(<span class="hljs-string">&quot;This cleanup code is always called&quot;</span>)
+</code></pre>
 <h1 id="java">Java</h1>
 
                                 
@@ -297,7 +486,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Programming Language","level":"2.8","depth":1,"previous":{"title":"Algorithm","level":"2.7","depth":1,"path":"algorithm.md","ref":"algorithm.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"programming_language.md","mtime":"2020-11-23T22:20:45.281Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-23T22:24:25.837Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Programming Language","level":"2.8","depth":1,"previous":{"title":"Algorithm","level":"2.7","depth":1,"path":"algorithm.md","ref":"algorithm.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"programming_language.md","mtime":"2020-11-26T00:21:59.004Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-26T00:24:25.540Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -92,6 +92,8 @@ name1=value1&name2=value2
  
  
 ## Restful
+http://www.ruanyifeng.com/blog/2011/09/restful.html
+
 http  verb
 url end points, 每一个URI代表一种资源；
  
