@@ -5,11 +5,11 @@
 ES6新特性
 https://juejin.im/post/6844903618810757128
 JavaScript是单线程运行的： JavaScript异步编程的几种常见模式
-·    	回调函数
-·    	Promise
-·    	Generation Function
-·    	async/await
-·    	Event
+* 回调函数
+* Promise
+* Generation Function
+* async/await
+* Event
  
  
 ### 阻塞 
