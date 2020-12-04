@@ -16,6 +16,25 @@ OSI 要比上面的网络模型多了 表示层 和 会话层，其他层基本�
 数据链路层(data link layer)通常简称为链路层。两台主机之间的数据传输，总是在一段一段的链路上传送的，这就需要使用专门的链路层的协议。 在两个相邻节点之间传送数据时，数据链路层将网络层交下来的 IP 数据报组装程帧，在两个相邻节点间的链路上传送帧。每一帧包括数据和必要的控制信息（如同步信息，地址信息，差错控制等）。
  
 在物理层上所传送的数据单位是比特。 物理层(physical layer)的作用是实现相邻计算机节点之间比特流的透明传送，尽可能屏蔽掉具体传输介质和物理设备的差异。 使其上面的数据链路层不必考虑网络的具体传输介质是什么。“透明传送比特流”表示经实际电路传送后的比特流没有发生变化，对传送的比特流来说，这个电路好像是看不见的。
+## How does router get MAC address of another router in the same LAN?
+ARP
+<p align="center" width="100%">
+    <img width="50%" src="img/ARP.png" > 
+</p> -->
+
+## How does a host know the IP of another host in internet?
+DNS 
+
+## How does a host it's own IP add?
+DHCP
+
+## How to distinguish between two or more applications running on the same host?
+Port #
+
+## IP vs Mac
+<p align="center" width="100%">
+    <img width="50%" src="img/IPMAC.png" > 
+</p> -->
 
 ## TCP/IP
 IP地址实际上是一个32位整数（称为IPv4），以字符串表示的IP地址如192.168.0.1实际上是把32位整数按8位分组后的数字表示，目的是便于阅读。
@@ -26,12 +45,11 @@ TCP是流stream，不是段segment。它有个缓冲区，区里是比特流，�
  
 之所以三次，是因为TCP是双向传输，服务器和客户端都有缓冲区。
  
-第一次：客户端client告诉服务器server我这的字节编号（初始序号ISN）。即client对server发送一个SYN段，指明client想要连接的server端口，以及初始序号ISN(1415531521)。 SYN是报文段1。
+1. 第一次：客户端client告诉服务器server我这的字节编号（初始序号ISN）。即client对server发送一个SYN段，指明client想要连接的server端口，以及初始序号ISN(1415531521)。 SYN是报文段1。
  
-第二次：然后服务器收到后发送ack，然后服务器把自己的字节编号发给用户，这里是两步，但是发ack和发字节编号可以同时进行，所以就一步。server发回包含server初始序号 ISN（1823083521）的SYN（报文2），同时，将确认序号（ACK）设置为client 的 ISN+1 (1415531522) 对client的SYN报文段进行确认。
+2. 第二次：然后服务器收到后发送ack，然后服务器把自己的字节编号发给用户，这里是两步，但是发ack和发字节编号可以同时进行，所以就一步。server发回包含server初始序号 ISN（1823083521）的SYN（报文2），同时，将确认序号（ACK）设置为client 的 ISN+1 (1415531522) 对client的SYN报文段进行确认。
  
-第三次：最后客户端拿到服务器的字节编号后发送ack。
-client必须把确认序号（ACK）设置为server的 ISN+1 （1823083521）来对server的报文段进行确认（报文段3）
+3. 第三次：最后客户端拿到服务器的字节编号后发送ack。 client必须把确认序号（ACK）设置为server的 ISN+1 （1823083521）来对server的报文段进行确认（报文段3）
 
 
 如果已经明确知道服务端不用给客户端发消息，两次握手就够了
@@ -41,13 +59,13 @@ client必须把确认序号（ACK）设置为server的 ISN+1 （1823083521）来
 因为是流stream，所以需要匹配。但是UDP不用，它没有缓冲区，它是一段一段segment的，所以不需要握手
  
 个人简单理解：
-第一次：client -> server，证明了client的发送端功能正常
-第二次： server -> client 证明了server的发送端和接受端功能均正常
-第三次： client -> server 证明了client的接收端功能正常
+1. 第一次：client -> server，证明了client的发送端功能正常
+2. 第二次：server -> client 证明了server的发送端和接受端功能均正常
+3. 第三次：client -> server 证明了client的接收端功能正常
  
-第一次，client 将标识位 SYN 置为 1, seq = x (Sequence number)发送给server, 此时本机状态为 SYN-SENT
-第二次，server 收到包之后，将状态切换为SYN-RECEIVED，并将标识位 SYN 和 ACK都置为1, seq = y, ack = x + 1, 并发送给客户端。y是数据的长度
-第三次，客户端收到包后，将状态切换为ESTABLISHED，并将标识位ACK置为1， ack = y + 1, 并发送给服务端。服务端收到包之后，也将状态切换为ESTABLISHED
+1. 第一次，client 将标识位 SYN 置为 1, seq = x (Sequence number)发送给server, 此时本机状态为 SYN-SENT
+2. 第二次，server 收到包之后，将状态切换为SYN-RECEIVED，并将标识位 SYN 和 ACK都置为1, seq = y, ack = x + 1, 并发送给客户端。y是数据的长度
+3. 第三次，客户端收到包后，将状态切换为ESTABLISHED，并将标识位ACK置为1， ack = y + 1, 并发送给服务端。服务端收到包之后，也将状态切换为ESTABLISHED
  
 ## 四次挥手
 终止一个TCP连接需要4次握手
@@ -62,10 +80,10 @@ B 接收了 A 发的 FIN，B还可以给 A 发数据， B属于被动关闭
  
 FIN 完成标识
  
-第一次： client 关闭连接发出 FIN（1415531522） 对server
-第二次： server收到这个 FIN，发回一个 ACK（1415531523）， 确认序号（ACK）为收到的序号+1
-第三次： TCP的server需要向应用程序传送文件结束符号EOF，服务器程序关闭连接，server 向 client 发送 FIN （1823083522）
-第四次： client需要发回一个确认序号ACK （1823083523），确认序号是收到序号+1
+1. 第一次： client 关闭连接发出 FIN（1415531522） 对server
+2. 第二次： server收到这个 FIN，发回一个 ACK（1415531523）， 确认序号（ACK）为收到的序号+1
+3. 第三次： TCP的server需要向应用程序传送文件结束符号EOF，服务器程序关闭连接，server 向 client 发送 FIN （1823083522）
+4. 第四次： client需要发回一个确认序号ACK （1823083523），确认序号是收到序号+1
  
 第四次握手后，主机发送确认信号后并没有立即断开连接，而是等待了 2 个报文传送周期，原因是：如果第四次握手的确认信息丢失，服务器将会重新发送第三次握手的断开连接的信号，而服务器发觉丢包与重新发送的断开连接到达主机的时间正好为 2 个报文传输周期。
  
@@ -77,7 +95,9 @@ FIN 完成标识
  
  
 ## TCP 和 UDP
- 
+<p align="center" width="100%">
+    <img width="50%" src="img/TCPUDP.png" > 
+</p> -->
  
  
  

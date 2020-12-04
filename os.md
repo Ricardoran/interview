@@ -32,10 +32,30 @@
 4. 单进程、多线程，VxWorks是这种操作系统。
  
 ## Linux 内存
-malloc和new申请的都是虚拟内存
+### malloc和new申请的都是虚拟内存
 malloc函数的实质，有一个将可用的内存块连接起来的链表，调用malloc的时候，会沿着链表找一个满足用户需求的内存块。然后将这个内存块一分为二，一块和用户所申请的内存大小相同，另一块返回到链表中。如果用户申请一个大的内存块，空闲链表上可能没有可以满足用户要求的片段，这个时候malloc函数就会请求延时，对链表上的内存进行整理。如果还是不可以的话， 内存申请失败，返回NULL。
 new的话，底层实现还是malloc，在分配失败的时候会抛出bad_alloc类型的异常
- 
+
+### malloc() and calloc()
+* malloc and calloc() are library functions that allocate memory dynamically. 
+* It means that memory is allocated during runtime(execution of the program) from the heap segment.
+```C
+void *malloc(unsigned int num_bytes)；
+// malloc()函数有一个参数，即要分配的内存空间的大小：
+void* calloc(size_t num, size_t size); 
+// calloc()函数有两个参数，分别为元素的数目和每个元素的大小，这两个参数的乘积就是要分配的内存空间的大小
+
+/*如果调用成功，函数malloc()和calloc()都将返回所分配的内存空间的首地址。*/
+```
+
+1. malloc() allocates memory block of given size (in bytes) and returns a pointer to the beginning of the block. malloc() doesn’t initialize the allocated memory.
+
+2. calloc() allocates the memory and also initializes the allocated memory block to zero. If we try to access the content of these blocks then we’ll get 0.
+
+3. After successful allocation in malloc() and calloc(), a pointer to the block of memory is returned otherwise NULL value is returned which indicates the failure of allocation.
+
+
+## I/O 多路复用
 与多进程和多线程技术相比，I/O多路复用技术的最大优势是系统开销小，系统不必创建进程/线程，也不必维护这些进程/线程，从而大大减小了系统的开销。
  
 目前支持I/O多路复用的系统调用有 select，pselect，poll，epoll，I/O多路复用就是通过一种机制，一个进程可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。但select，pselect，poll，epoll本质上都是同步I/O
