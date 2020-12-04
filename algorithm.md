@@ -23,9 +23,10 @@ def pre_order(root):
             res.append(root)
             dfs(root.left)
             dfs(root.right)
+    dfs(root)
     return res
         
-
+# 中序遍历 BST可以得到按序排列的数组
 def in_order(root):
     """
     left, root, right
@@ -38,6 +39,7 @@ def in_order(root):
             dfs(root.left)
             res.append(root)
             dfs(root.right)
+    dfs(root)
     return res
 
 
@@ -54,10 +56,14 @@ def post_order(root):
             dfs(root.left)
             dfs(root.right)
             res.append(root)
+    dfs(root)
     return res
 
 
 # iterative solution
+# 每次pop一个root，
+# 如果root是int类型且root不为空，即可放在输出列表里，
+# 当root不空的时候，按照输出反序压入栈
 def preorderTraversal(root):
     if root is None:
         return []
@@ -66,7 +72,7 @@ def preorderTraversal(root):
     stack = [root]			                        # 将树压入栈中
     while stack:			                        # 循环栈
         root = stack.pop()	                                # 根节点等于出栈的节点
-        if type(root) != t and root is not None:	        # 如果此时root不为树并且不为空
+        if type(root) != t and root:	        # 如果此时root不为树并且不为空
             out.append(root)				        # 将这个数加入输出数组中
             continue						# 结束本次循环
         if root:      						# 如果此时root是树
@@ -111,4 +117,21 @@ def postorderTraversal(self, root):
             stack.append(root.left)
     return out
 
+```
+
+## Quick Sort
+
+```python
+def quickSort(arr):
+    if len(arr) < 2:
+        return arr
+    pivot = arr[0]
+    left = []
+    right = []
+    for i in arr[1:]:
+        if i < pivot:
+            left.append(i)
+        else:
+            right.append(i)
+    return quickSort(left) + [pivot] + quickSort(right)
 ```
