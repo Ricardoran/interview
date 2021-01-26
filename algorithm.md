@@ -135,3 +135,6 @@ def quickSort(arr):
             right.append(i)
     return quickSort(left) + [pivot] + quickSort(right)
 ```
+
+
+## online(data stream or batch) offline(batch) algorithm
